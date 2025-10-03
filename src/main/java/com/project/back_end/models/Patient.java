@@ -33,6 +33,15 @@ public class Patient {
     @Size(max = 255, message = "Address must not exceed 255 characters")
     private String address;
 
+    @Past(message = "Date of birth must be in the past")
+    private LocalDate dateOfBirth;
+
+    @Size(max = 50)
+    private String emergencyContact;
+
+    @Size(max = 100)
+private String insuranceProvider;
+
     // ---- Constructors ----
     public Patient() {}
 

@@ -29,6 +29,12 @@ public class Prescription {
     @Size(max = 200, message = "Doctor notes must not exceed 200 characters")
     private String doctorNotes;
 
+    @Min(0)
+private int refillCount;
+
+    @Size(max = 100)
+    private String pharmacyName;
+
     // ---- Constructors ----
     public Prescription() {}
 

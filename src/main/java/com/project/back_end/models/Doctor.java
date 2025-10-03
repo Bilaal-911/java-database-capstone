@@ -38,6 +38,17 @@ public class Doctor {
     @ElementCollection
     private List<String> availableTimes; // Example: ["09:00 - 10:00", "14:00 - 15:00"]
 
+    @Min(0)
+    @Max(50)
+    private int yearsOfExperience;
+
+    @Size(max = 255)
+    private String clinicAddress;
+
+    @Min(0)
+    @Max(5)
+    private double rating; // e.g., 4.5 stars
+
     // ---- Constructors ----
     public Doctor() {}
 
