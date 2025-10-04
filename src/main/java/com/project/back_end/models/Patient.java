@@ -12,6 +12,7 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+<<<<<<< HEAD
     @NotNull(message = "Name cannot be null")
     @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
     private String name;
@@ -45,6 +46,39 @@ private String insuranceProvider;
     // ---- Constructors ----
     public Patient() {}
 
+=======
+    @NotNull(message = "Patient name is required")
+    @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
+    @Column(nullable = false)
+    private String name;
+
+    @NotNull(message = "Email is required")
+    @Email(message = "Email should be valid")
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @NotNull(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(nullable = false)
+    private String password;
+
+    @NotNull(message = "Phone number is required")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
+    @Column(nullable = false, unique = true)
+    private String phone;
+
+    @NotNull(message = "Address is required")
+    @Size(max = 255, message = "Address must be at most 255 characters")
+    @Column(nullable = false)
+    private String address;
+
+    // Default constructor required by JPA
+    public Patient() {
+    }
+
+    // Parameterized constructor
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public Patient(String name, String email, String password, String phone, String address) {
         this.name = name;
         this.email = email;
@@ -53,7 +87,12 @@ private String insuranceProvider;
         this.address = address;
     }
 
+<<<<<<< HEAD
     // ---- Getters and Setters ----
+=======
+    // Getters and Setters
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public Long getId() {
         return id;
     }
@@ -78,7 +117,10 @@ private String insuranceProvider;
         this.email = email;
     }
 
+<<<<<<< HEAD
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // extra safety
+=======
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public String getPassword() {
         return password;
     }
@@ -103,3 +145,7 @@ private String insuranceProvider;
         this.address = address;
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)

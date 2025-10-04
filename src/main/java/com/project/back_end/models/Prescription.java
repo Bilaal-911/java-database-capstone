@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Prescription {
 
     @Id
+<<<<<<< HEAD
     private String id; // MongoDB unique ID (ObjectId as String)
 
     @NotNull(message = "Patient name cannot be null")
@@ -39,13 +40,48 @@ private int refillCount;
     public Prescription() {}
 
     public Prescription(String patientName, Long appointmentId, String medication, String dosage) {
+=======
+    private String id;
+
+    @NotNull(message = "Patient name is required")
+    @Size(min = 3, max = 100, message = "Patient name must be between 3 and 100 characters")
+    private String patientName;
+
+    @NotNull(message = "Appointment ID is required")
+    private Long appointmentId;
+
+    @NotNull(message = "Medication name is required")
+    @Size(min = 3, max = 100, message = "Medication name must be between 3 and 100 characters")
+    private String medication;
+
+    @NotNull(message = "Dosage is required")
+    private String dosage;
+
+    @Size(max = 200, message = "Doctor notes must be at most 200 characters")
+    private String doctorNotes;
+
+    // Default constructor required by Spring Data
+    public Prescription() {
+    }
+
+    // Parameterized constructor
+    public Prescription(String patientName, Long appointmentId, String medication, String dosage, String doctorNotes) {
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
         this.patientName = patientName;
         this.appointmentId = appointmentId;
         this.medication = medication;
         this.dosage = dosage;
+<<<<<<< HEAD
     }
 
     // ---- Getters and Setters ----
+=======
+        this.doctorNotes = doctorNotes;
+    }
+
+    // Getters and Setters
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public String getId() {
         return id;
     }

@@ -14,6 +14,7 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+<<<<<<< HEAD
     @NotNull(message = "Name cannot be null")
     @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
     private String name;
@@ -52,6 +53,44 @@ public class Doctor {
     // ---- Constructors ----
     public Doctor() {}
 
+=======
+    @NotNull(message = "Doctor name is required")
+    @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
+    @Column(nullable = false)
+    private String name;
+
+    @NotNull(message = "Specialty is required")
+    @Size(min = 3, max = 50, message = "Specialty must be between 3 and 50 characters")
+    @Column(nullable = false)
+    private String specialty;
+
+    @NotNull(message = "Email is required")
+    @Email(message = "Email should be valid")
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @NotNull(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters long")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(nullable = false)
+    private String password;
+
+    @NotNull(message = "Phone number is required")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
+    @Column(nullable = false, unique = true)
+    private String phone;
+
+    @ElementCollection
+    @CollectionTable(name = "doctor_available_times", joinColumns = @JoinColumn(name = "doctor_id"))
+    @Column(name = "time_slot")
+    private List<String> availableTimes;
+
+    // Default constructor required by JPA
+    public Doctor() {
+    }
+
+    // Parameterized constructor for convenience
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public Doctor(String name, String specialty, String email, String password, String phone, List<String> availableTimes) {
         this.name = name;
         this.specialty = specialty;
@@ -61,7 +100,12 @@ public class Doctor {
         this.availableTimes = availableTimes;
     }
 
+<<<<<<< HEAD
     // ---- Getters and Setters ----
+=======
+    // Getters and Setters
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public Long getId() {
         return id;
     }
@@ -94,7 +138,10 @@ public class Doctor {
         this.email = email;
     }
 
+<<<<<<< HEAD
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // double safety for getters
+=======
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public String getPassword() {
         return password;
     }
@@ -119,3 +166,8 @@ public class Doctor {
         this.availableTimes = availableTimes;
     }
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)

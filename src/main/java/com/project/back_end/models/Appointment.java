@@ -16,6 +16,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+<<<<<<< HEAD
     // ---- Relationships ----
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
@@ -39,11 +40,39 @@ public class Appointment {
     public Appointment() {}
 
     public Appointment(Doctor doctor, Patient patient, LocalDateTime appointmentTime, int status) {
+=======
+    @NotNull(message = "Doctor must be assigned")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private Doctor doctor;
+
+    @NotNull(message = "Patient must be assigned")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id", nullable = false)
+    private Patient patient;
+
+    @NotNull(message = "Appointment time must be provided")
+    @Future(message = "Appointment time must be in the future")
+    @Column(name = "appointment_time", nullable = false)
+    private LocalDateTime appointmentTime;
+
+    @NotNull(message = "Status is required")
+    @Column(nullable = false)
+    private Integer status; // 0 = scheduled, 1 = completed
+
+    // Default constructor required by JPA
+    public Appointment() {
+    }
+
+    // Parameterized constructor
+    public Appointment(Doctor doctor, Patient patient, LocalDateTime appointmentTime, Integer status) {
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
         this.doctor = doctor;
         this.patient = patient;
         this.appointmentTime = appointmentTime;
         this.status = status;
     }
+<<<<<<< HEAD
     @Size(max = 200)
     private String reasonForVisit;
 
@@ -54,19 +83,38 @@ public class Appointment {
     @Transient
     public LocalDateTime getEndTime() {
         return appointmentTime != null ? appointmentTime.plusHours(1) : null;
+=======
+
+    // Transient method: end time is not stored in DB
+    @Transient
+    public LocalDateTime getEndTime() {
+        return appointmentTime.plusHours(1);
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     }
 
     @Transient
     public LocalDate getAppointmentDate() {
+<<<<<<< HEAD
         return appointmentTime != null ? appointmentTime.toLocalDate() : null;
+=======
+        return appointmentTime.toLocalDate();
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     }
 
     @Transient
     public LocalTime getAppointmentTimeOnly() {
+<<<<<<< HEAD
         return appointmentTime != null ? appointmentTime.toLocalTime() : null;
     }
 
     // ---- Getters and Setters ----
+=======
+        return appointmentTime.toLocalTime();
+    }
+
+    // Getters and Setters
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
     public Long getId() {
         return id;
     }
@@ -99,6 +147,7 @@ public class Appointment {
         this.appointmentTime = appointmentTime;
     }
 
+<<<<<<< HEAD
     public int getStatus() {
         return status;
     }
@@ -107,3 +156,15 @@ public class Appointment {
         this.status = status;
     }
 }
+=======
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+}
+
+
+>>>>>>> 9e3c62a (Initial commit: backend setup with Spring Boot and database)
